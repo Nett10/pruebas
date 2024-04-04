@@ -3,9 +3,9 @@ import java.util.List;
 public interface DAO <T>{
     void insertar(T t) throws DAOException;
     void modificar(T t);
-    void eliminar(T t);
+    void eliminar(T t) throws DAOException;
     List<T> obtenerTodos();
-    T obtener();
+    T obtener() throws DAOException;
 
 }
 
