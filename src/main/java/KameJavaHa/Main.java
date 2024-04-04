@@ -36,7 +36,7 @@ public class Main {
             System.err.println("Error al insertar el jugador: " + e.getMessage());
         }
     }
-
+// TODO
     public void insertarSocio() throws DAOException {
         System.out.println("Introduce nombre:");
         String nombre = teclado.nextLine();
