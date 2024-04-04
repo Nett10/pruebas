@@ -15,7 +15,9 @@ public class Main {
             Connection conn = null;
             try {
                 System.out.println("Hello world!");
-                Main main = new Main(conn);
+                Conexion conexion = new Conexion();
+                conn = conexion.conectar(); // Conectar a la base de datos
+                Main main = new Main(conn); // Pasar la conexión al constructor de Main
                 main.insertarSocio();
             } finally {
                 if (conn != null) {
@@ -31,15 +33,14 @@ public class Main {
         }
     }
 
-
     public void insertarSocio() throws DAOException {
-        System.out.println("introduce nombre");
+        System.out.println("Introduce nombre:");
         String nombre = teclado.nextLine();
-        System.out.println("introduce apellidos");
+        System.out.println("Introduce apellidos:");
         String apellidos = teclado.nextLine();
-        System.out.println("Introduce dorsal");
+        System.out.println("Introduce dorsal:");
         int dorsal = teclado.nextInt();
-        System.out.println("Introduce puntos de media");
+        System.out.println("Introduce puntos de media:");
         double puntosMedia = teclado.nextDouble();
         teclado.nextLine(); // Limpiar el buffer de entrada
         Jugador nuevoJugador = new Jugador(nombre, apellidos, dorsal, puntosMedia);

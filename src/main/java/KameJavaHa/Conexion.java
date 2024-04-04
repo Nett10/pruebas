@@ -3,47 +3,41 @@ package KameJavaHa;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Conexion {
-    private static final String URL = "jdbc:mysql://localhost:3306/tu_base_de_datos";
-    private static final String USUARIO = "usuario";
-    private static final String CONTRASEÑA = "contraseña";
-    private Connection conn;
+
+    String url = "jdbc:mysql://127.0.0.1:3306/pruebaBasquet?user=root";
+    String user = "root";
+    String password = "Oria2606";
+    String driver = "com.mysql.cj.jdbc.Driver";
+    Connection cx;
 
     public Conexion() {
-        cargarControlador();
-        this.conn = establecerConexion();
+
     }
 
-    private void cargarControlador() {
+    public Connection conectar() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-    }
+            Class.forName(driver);
+            cx = (Connection) DriverManager.getConnection(url, user, password);
+            System.out.println("Se conectó a la base de datos.");
 
-    private Connection establecerConexion() {
-        Connection connection = null;
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("No se conecto a la BBDD ");
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE,null,ex);
+        }
+
+        return cx;
+    }
+    public void desconectar(){
         try {
-            connection = DriverManager.getConnection(URL, USUARIO, CONTRASEÑA);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return connection;
-    }
-
-    public Connection obtenerConexion() {
-        return conn;
-    }
-
-    public void cerrarConexion() {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            cx.close();
+            System.out.println("Se ha desconectado de la base de datos.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
+
 }

@@ -11,7 +11,7 @@ public class MySQLJugador implements JugadorDAO{
     MySQLJugador mySQLJugador;
     final String DELETE = "DELETE from Jugador WHERE idJugador =?";
     final String GETONE = "SELECT idJugador, nombre, apellido, dorsal, promedioPuntos FROM jugador WHERE idJugador = ?";
-    final String INSERT = " INSERT INTO jugador(nombre, apellidos, dorsal, promedioPuntos) VALUES(?,?,?,?)";
+    final String INSERT = " INSERT INTO jugador(nombre, apellidos, dorsal, mediaPuntos) VALUES(?,?,?,?)";
     private Connection conn;
     public MySQLJugador(Connection conn) {
        this.conn = conn;
@@ -31,7 +31,7 @@ public class MySQLJugador implements JugadorDAO{
                 throw new DAOException(("Error al guardar datos."));
             }
         }catch(SQLException ex){
-            throw new DAOException("Error en SQL", ex);
+            throw new DAOException("Error en SQL"+ ex.getMessage(),ex);
         } finally {
             if(stat != null){
                 try{
@@ -112,7 +112,7 @@ public class MySQLJugador implements JugadorDAO{
         List<Jugador> jugadores = new ArrayList<>();
 
         try {
-            String query = "SELECT idJugador, nombre, apellido, dorsal, promedioPuntos FROM jugador";
+            String query = "SELECT idJugador, nombre, apellido, dorsal, mediaPuntos FROM jugador";
             stat = conn.prepareStatement(query);
             rs = stat.executeQuery();
 
@@ -120,7 +120,7 @@ public class MySQLJugador implements JugadorDAO{
                 String nombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
                 int dorsal = rs.getInt("dorsal");
-                double promedioPuntos = rs.getDouble("promedioPuntos");
+                double promedioPuntos = rs.getDouble("mediaPuntos");
 
                 Jugador jugador = new Jugador( nombre, apellido, dorsal, promedioPuntos);
                 jugadores.add(jugador);
@@ -167,7 +167,7 @@ public class MySQLJugador implements JugadorDAO{
                 String nombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
                 int dorsal = rs.getInt("dorsal");
-                double promedioPuntos = rs.getDouble("promedioPuntos");
+                double promedioPuntos = rs.getDouble("mediaPuntos");
 
                 jugadorEncontrado = new Jugador( nombre, apellido, dorsal, promedioPuntos);
             }
