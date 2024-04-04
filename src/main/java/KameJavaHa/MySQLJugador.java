@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLJugador implements JugadorDAO{
@@ -105,9 +106,43 @@ public class MySQLJugador implements JugadorDAO{
 
 
     @Override
-    public List<Jugador> obtenerTodos() {
-        return null;
+    public List<Jugador> obtenerTodos() throws DAOException {
+        PreparedStatement stat = null;
+        ResultSet rs = null;
+        List<Jugador> jugadores = new ArrayList<>();
+
+        try {
+            String query = "SELECT idJugador, nombre, apellido, dorsal, promedioPuntos FROM jugador";
+            stat = conn.prepareStatement(query);
+            rs = stat.executeQuery();
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String apellido = rs.getString("apellido");
+                int dorsal = rs.getInt("dorsal");
+                double promedioPuntos = rs.getDouble("promedioPuntos");
+
+                Jugador jugador = new Jugador( nombre, apellido, dorsal, promedioPuntos);
+                jugadores.add(jugador);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error al obtener todos los jugadores", e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stat != null) {
+                    stat.close();
+                }
+            } catch (SQLException ex) {
+                throw new DAOException("Error al cerrar ResultSet o PreparedStatement", ex);
+            }
+        }
+
+        return jugadores;
     }
+
 
     @Override
     public Jugador obtener() throws DAOException {
