@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89314dfc-1e32-42dc-942c-1d36b3fa90df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-j-8.3.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="89314dfc-1e32-42dc-942c-1d36b3fa90df" name="Changes" comment="insertar funcionando">
+      <change afterPath="$PROJECT_DIR$/src/main/java/KameJavaHa/JugadorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/KameJavaHa/Conexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/KameJavaHa/Conexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/KameJavaHa/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/KameJavaHa/Jugador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/KameJavaHa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/KameJavaHa/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/KameJavaHa/MySQLJugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/KameJavaHa/MySQLJugador.java" afterDir="false" />
     </list>
@@ -17,6 +15,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -108,12 +113,25 @@
       <option name="presentableId" value="Default" />
       <updated>1712240446512</updated>
       <workItem from="1712240447872" duration="3398000" />
-      <workItem from="1712244087244" duration="923000" />
+      <workItem from="1712244087244" duration="8308000" />
     </task>
+    <task id="LOCAL-00001" summary="insertar funcionando">
+      <option name="closed" value="true" />
+      <created>1712246409724</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712246409724</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="insertar funcionando" />
+    <option name="LAST_COMMIT_MESSAGE" value="insertar funcionando" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

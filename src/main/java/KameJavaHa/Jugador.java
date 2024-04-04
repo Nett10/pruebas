@@ -45,8 +45,15 @@ public class Jugador {
         this.promedioPuntos = promedioPuntos;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+
+        @Override
+        public String toString() {
+            return "Jugador{" +
+                    "nombre='" + nombre + '\'' +
+                    ", apellido='" + apellido + '\'' +
+                    ", dorsal=" + dorsal +
+                    ", promedioPuntos=" + promedioPuntos +
+                    '}';
+        }
     }
-}
+

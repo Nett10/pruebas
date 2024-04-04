@@ -58,50 +58,26 @@ public class MySQLJugador implements JugadorDAO{
         int idJugador = -1; // Valor por defecto si no se encuentra el ID
         ResultSet rs = null;
         try {
-            String query = "SELECT id FROM jugador WHERE nombre = ? AND apellidos = ?";
+            String query = "DELETE FROM jugador WHERE nombre = ? AND apellidos = ?";
             stat = conn.prepareStatement(query);
             stat.setString(1, jugador.getNombre());
             stat.setString(2, jugador.getApellido());
-            rs = stat.executeQuery();
-            if (rs.next()) {
-                idJugador = rs.getInt("idJugador");
-            } else {
-                throw new DAOException("Jugador no encontrado en la base de datos");
-            }
+            stat.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException("Error al buscar el ID del jugador", e);
+            throw new DAOException("Error al eliminar el jugador", e);
         } finally {
+            // Cierre de recursos
             try {
-                if (rs != null) {
-                    rs.close();
-                }
                 if (stat != null) {
                     stat.close();
                 }
             } catch (SQLException ex) {
-                throw new DAOException("Error al cerrar ResultSet o PreparedStatement", ex);
+                throw new DAOException("Error al cerrar PreparedStatement", ex);
             }
         }
-
-        try{
-            stat = conn.prepareStatement(DELETE);
-            stat.setInt(1,idJugador);
-            stat.executeUpdate();
-
-        }catch( SQLException e){
-            throw new DAOException("error al borrar jugador");
-        }finally {
-            if (stat != null) {
-                try {
-                    stat.close();
-                } catch (SQLException e) {
-                    throw new DAOException(" Error" + e);
-                }
-
-
-            }
         }
-    }
+
+
 
 
 
@@ -112,13 +88,13 @@ public class MySQLJugador implements JugadorDAO{
         List<Jugador> jugadores = new ArrayList<>();
 
         try {
-            String query = "SELECT idJugador, nombre, apellido, dorsal, mediaPuntos FROM jugador";
+            String query = "SELECT idJugador, nombre, apellidos, dorsal, mediaPuntos FROM jugador";
             stat = conn.prepareStatement(query);
             rs = stat.executeQuery();
 
             while (rs.next()) {
                 String nombre = rs.getString("nombre");
-                String apellido = rs.getString("apellido");
+                String apellido = rs.getString("apellidos");
                 int dorsal = rs.getInt("dorsal");
                 double promedioPuntos = rs.getDouble("mediaPuntos");
 
@@ -126,7 +102,7 @@ public class MySQLJugador implements JugadorDAO{
                 jugadores.add(jugador);
             }
         } catch (SQLException e) {
-            throw new DAOException("Error al obtener todos los jugadores", e);
+            throw new DAOException("Error al obtener todos los jugadores. "+  e.getMessage());
         } finally {
             try {
                 if (rs != null) {
