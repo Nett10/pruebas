@@ -8,8 +8,8 @@ import java.util.List;
 
 public class MySQLJugador implements JugadorDAO{
     MySQLJugador mySQLJugador;
-    final String DELETE = "DELETE jugador from Jugador WHERE idJugador =?";
-    final String GETONE = "SELECT idJugador, nombre, apellido, dorsal, promedioPuntos FROM jugador WHERE idJugadro = ?";
+    final String DELETE = "DELETE from Jugador WHERE idJugador =?";
+    final String GETONE = "SELECT idJugador, nombre, apellido, dorsal, promedioPuntos FROM jugador WHERE idJugador = ?";
     final String INSERT = " INSERT INTO jugador(nombre, apellidos, dorsal, promedioPuntos) VALUES(?,?,?,?)";
     private Connection conn;
     public MySQLJugador(Connection conn) {
